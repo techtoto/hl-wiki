@@ -1,0 +1,25 @@
+.green-blink {
+    animation-name: green-blink;
+    animation-duration: 1.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+@keyframes green-blink {
+    50% {
+        fill: green;
+    }
+}
+
+.yellow-blink {
+    animation-name: yellow-blink;
+    animation-duration: 1.5s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+}
+
+@keyframes yellow-blink {
+    50% {
+        fill: yellow;
+    }
+}
