@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "vite": "^5.0.10"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "type": "module"
+}
