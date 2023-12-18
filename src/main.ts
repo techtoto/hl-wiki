@@ -1,3 +1,5 @@
+import signalStates from "./signals.json"
+
 enum State {
   Off,
   On,
@@ -11,12 +13,6 @@ interface Signal {
 }
 
 const output: HTMLElement = document.getElementById("output")!
-
-var signalStates: Array<Signal>
-
-fetch("./src/signals.json").then((response) => {return response.json()}).then((data) => {
-  signalStates = data
-})
 
 class Cycle {
   state: State
