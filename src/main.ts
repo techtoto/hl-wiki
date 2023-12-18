@@ -4,7 +4,19 @@ enum State {
   Blinking
 }
 
+interface Signal {
+  name: string,
+  lamps: number[],
+  description: string
+}
+
 const output: HTMLElement = document.getElementById("output")!
+
+var signalStates: Array<Signal>
+
+fetch("./src/signals.json").then((response) => {return response.json()}).then((data) => {
+  signalStates = data
+})
 
 class Cycle {
   state: State
@@ -65,142 +77,27 @@ const lights = {
   lightBarBottom: new Cycle(document.getElementById("lichtbalken_unten")!, "green")
 }
 
-const signalStates = new Map<string, State[]>([
-  // Hp 0 - Halt.
-  ["hp01", [State.Off, State.Off, State.On, State.Off, State.Off, State.Off, State.Off]],
 
-  // Hp 0 - Halt. (Ersatzrot)
-  ["hp02", [State.Off, State.Off, State.Off, State.Off, State.On, State.Off, State.Off]],
-
-  // Hl 1 - Fahrt mit Höchstgeschwindigkeit.
-  ["hl1", [State.Off, State.On, State.Off, State.Off, State.Off, State.Off, State.Off]],
-
-  // Hl 2 - Fahrt mit 100 km/h, dann mit Höchstgeschwindigkeit.
-  ["hl2", [State.Off, State.On, State.Off, State.On, State.Off, State.Off, State.On]],
-
-  // Hl 3a - Fahrt mit 40 km/h, dann mit Höchstgeschwindigkeit.
-  ["hl3a", [State.Off, State.On, State.Off, State.On, State.Off, State.Off, State.Off]],
-
-  // Hl 3b - Fahrt mit 60 km/h, dann mit Höchstgeschwindigkeit.
-  ["hl3b", [State.Off, State.On, State.Off, State.On, State.Off, State.On, State.Off]],
-
-  // Hl 4 - Höchstgeschwindigkeit auf 100 km/h ermäßigen.
-  ["hl4", [State.Off, State.Blinking, State.Off, State.Off, State.Off, State.Off, State.Off]],
-
-  // Hl 5 - Fahrt mit 100 km/h.
-  ["hl5", [State.Off, State.Blinking, State.Off, State.On, State.Off, State.Off, State.On]],
-
-  // Hl 6a - Fahrt mit 40 km/h, dann mit 100 km/h.
-  ["hl6a", [State.Off, State.Blinking, State.Off, State.On, State.Off, State.Off, State.Off]],
-
-  // Hl 6b - Fahrt mit 60 km/h, dann mit 100 km/h.
-  ["hl6b", [State.Off, State.Blinking, State.Off, State.On, State.Off, State.On, State.Off]],
-
-  // Hl 7 - Höchstgeschwindigkeit auf 40 km/h (60 km/h) ermäßigen.
-  ["hl7", [State.Blinking, State.Off, State.Off, State.Off, State.Off, State.Off, State.Off]],
-
-  // Hl 8 - Geschwindigkeit 100 km/h auf 40 km/h (60 km/h) ermäßigen.
-  ["hl8", [State.Blinking, State.Off, State.Off, State.On, State.Off, State.Off, State.On]],
-
-  // Hl 9a - Fahrt mit 40 km/h, dann mit 40 km/h (60 km/h).
-  ["hl9a", [State.Blinking, State.Off, State.Off, State.On, State.Off, State.Off, State.Off]],
-
-  // Hl 9b - Fahrt mit 60 km/h, dann mit 40 km/h (60 km/h).
-  ["hl9b", [State.Blinking, State.Off, State.Off, State.On, State.Off, State.On, State.Off]],
-
-  // Hl 10 - „Halt“ erwarten.
-  ["hl10", [State.On, State.Off, State.Off, State.Off, State.Off, State.Off, State.Off]],
-
-  // Hl 11 - Geschwindigkeit 100 km/h ermäßigen, „Halt“ erwarten.
-  ["hl11", [State.On, State.Off, State.Off, State.On, State.Off, State.Off, State.On]],
-
-  // Hl 12a - Geschwindigkeit 40 km/h ermäßigen, „Halt“ erwarten.
-  ["hl12a", [State.On, State.Off, State.Off, State.On, State.Off, State.Off, State.Off]],
-
-  // Hl 12b - Geschwindigkeit 60 km/h ermäßigen, „Halt“ erwarten.
-  ["hl12b", [State.On, State.Off, State.Off, State.On, State.Off, State.Off, State.On]]
-])
-
-
-function isSignalState(state: string): boolean {
-  return lights.lightTopLeft.state == signalStates.get(state)![0]
-    && lights.lightTopRight.state == signalStates.get(state)![1]
-    && lights.lightMiddle.state == signalStates.get(state)![2]
-    && lights.lightBottomLeft.state == signalStates.get(state)![3]
-    && lights.lightBottomRight.state == signalStates.get(state)![4]
-    && lights.lightBarTop.state == signalStates.get(state)![5]
-    && lights.lightBarBottom.state == signalStates.get(state)![6]
-}
-
-function getSignalState(): string {
-  let signalState: string = "none"
-  signalStates.forEach((value, key) => {
-    if (isSignalState(key)) signalState = key
-  })
-  return signalState
+function getSignal(): Signal | undefined {
+  for (const entry of signalStates) {
+    if (lights.lightTopLeft.state == entry.lamps[0]
+      && lights.lightTopRight.state == entry.lamps[1]
+      && lights.lightMiddle.state == entry.lamps[2]
+      && lights.lightBottomLeft.state == entry.lamps[3]
+      && lights.lightBottomRight.state == entry.lamps[4]
+      && lights.lightBarTop.state == entry.lamps[5]
+      && lights.lightBarBottom.state == entry.lamps[6]) {
+        return entry
+      }
+  }
 }
 
 function decodeSignal() {
-  let signal = getSignalState()
+  var currentSignal = getSignal()
 
-  console.log(signal)
-
-  switch (signal) {
-    case "hp01":
-      output.innerText = "Hp 0 - Halt."
-      break
-    case "hp02":
-      output.innerText = "Hp 0 - Halt. (Ersatzrot)"
-      break
-    case "hl1":
-      output.innerText = "Hl 1 - Fahrt mit Höchstgeschwindigkeit."
-      break
-    case "hl2":
-      output.innerText = "Hl 2 - Fahrt mit 100 km/h, dann mit Höchstgeschwindigkeit."
-      break
-    case "hl3a":
-      output.innerText = "Hl 3a - Fahrt mit 40 km/h, dann mit Höchstgeschwindigkeit."
-      break
-    case "hl3b":
-      output.innerText = "Hl 3b - Fahrt mit 60 km/h, dann mit Höchstgeschwindigkeit."
-      break
-    case "hl4":
-      output.innerText = "Hl 4 - Höchstgeschwindigkeit auf 100 km/h ermäßigen."
-      break
-    case "hl5":
-      output.innerText = "Hl 5 - Fahrt mit 100 km/h."
-      break
-    case "hl6a":
-      output.innerText = "Hl 6a - Fahrt mit 40 km/h, dann mit 100 km/h."
-      break
-    case "hl6b":
-      output.innerText = "Hl 6b - Fahrt mit 60 km/h, dann mit 100 km/h."
-      break
-    case "hl7":
-      output.innerText = "Hl 7 - Höchstgeschwindigkeit auf 40 km/h (60 km/h) ermäßigen."
-      break
-    case "hl8":
-      output.innerText = "Hl 8 - Geschwindigkeit 100 km/h auf 40 km/h (60 km/h) ermäßigen."
-      break
-    case "hl9a":
-      output.innerText = "Hl 9a - Fahrt mit 40 km/h, dann mit 40 km/h (60 km/h)."
-      break
-    case "hl9b":
-      output.innerText = "Hl 9b - Fahrt mit 60 km/h, dann mit 40 km/h (60 km/h)."
-      break
-    case "hl10":
-      output.innerText = "Hl 10 - „Halt“ erwarten."
-      break
-    case "hl11":
-      output.innerText = "Hl 11 - Geschwindigkeit 100 km/h ermäßigen, „Halt“ erwarten."
-      break
-    case "hl12a":
-      output.innerText = "Hl 12a - Geschwindigkeit 40 km/h ermäßigen, „Halt“ erwarten."
-      break
-    case "hl12b":
-      output.innerText = "Hl 12b - Geschwindigkeit 60 km/h ermäßigen, „Halt“ erwarten."
-      break
-    default:
-      output.innerText = "Kein valides Signalbild!"
+  if (currentSignal != undefined) {
+    output.innerText = currentSignal.name + " - " + currentSignal.description
+  } else {
+    output.innerText = "Kein valides Signalbild!"
   }
 }

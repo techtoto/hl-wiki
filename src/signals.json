@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Hp 0",
+        "lamps": [0, 0, 1, 0, 0, 0, 0],
+        "description": "Halt."
+    },
+    {
+        "name": "Hp 0",
+        "lamps": [0, 0, 0, 0, 1, 0, 0],
+        "description": "Halt. (Ersatzrot)"
+    },
+    {
+        "name": "Hl 1",
+        "lamps": [0, 1, 0, 0, 0, 0, 0],
+        "description": "Fahrt mit Höchstgeschwindigkeit."
+    },
+    {
+        "name": "Hl 2",
+        "lamps": [0, 1, 0, 0, 0, 0, 0],
+        "description": "Fahrt mit Höchstgeschwindigkeit."
+    },
+    {
+        "name": "Hl 3a",
+        "lamps": [0, 1, 0, 1, 0, 0, 0],
+        "description": "Fahrt mit 40 km/h, dann mit Höchstgeschwindigkeit."
+    },
+    {
+        "name": "Hl 3b",
+        "lamps": [0, 1, 0, 1, 0, 1, 0],
+        "description": "Fahrt mit 60 km/h, dann mit Höchstgeschwindigkeit."
+    },
+    {
+        "name": "Hl 4",
+        "lamps": [0, 2, 0, 0, 0, 0, 0],
+        "description": "Höchstgeschwindigkeit auf 100 km/h ermäßigen."
+    },
+    {
+        "name": "Hl 5",
+        "lamps": [0, 2, 0, 1, 0, 0, 1],
+        "description": "Fahrt mit 100 km/h."
+    },
+    {
+        "name": "Hl 6a",
+        "lamps": [0, 2, 0, 1, 0, 0, 0],
+        "description": "Fahrt mit 40 km/h, dann mit 100 km/h."
+    },
+    {
+        "name": "Hl 6b",
+        "lamps": [0, 2, 0, 1, 0, 1, 0],
+        "description": "Fahrt mit 60 km/h, dann mit 100 km/h."
+    },
+    {
+        "name": "Hl 7",
+        "lamps": [2, 0, 0, 0, 0, 0, 0],
+        "description": "Höchstgeschwindigkeit auf 40 km/h (60 km/h) ermäßigen."
+    },
+    {
+        "name": "Hl 8",
+        "lamps": [2, 0, 0, 1, 0, 0, 1],
+        "description": "Geschwindigkeit 100 km/h auf 40 km/h (60 km/h) ermäßigen."
+    },
+    {
+        "name": "Hl 9a",
+        "lamps": [2, 0, 0, 1, 0, 0, 0],
+        "description": "Fahrt mit 40 km/h, dann mit 40 km/h (60 km/h)."
+    },
+    {
+        "name": "Hl 9b",
+        "lamps": [2, 0, 0, 1, 0, 1, 0],
+        "description": "Fahrt mit 60 km/h, dann mit 40 km/h (60 km/h)."
+    },
+    {
+        "name": "Hl 10",
+        "lamps": [1, 0, 0, 0, 0, 0, 0],
+        "description": "„Halt“ erwarten."
+    },
+    {
+        "name": "Hl 11",
+        "lamps": [1, 0, 0, 1, 0, 0, 1],
+        "description": "Geschwindigkeit 100 km/h ermäßigen, „Halt“ erwarten."
+    },
+    {
+        "name": "Hl 12a",
+        "lamps": [1, 0, 0, 1, 0, 0, 0],
+        "description": "Geschwindigkeit 40 km/h ermäßigen, „Halt“ erwarten."
+    },
+    {
+        "name": "Hl 12b",
+        "lamps": [1, 0, 0, 1, 0, 1, 0],
+        "description": "Geschwindigkeit 40 km/h ermäßigen, „Halt“ erwarten."
+    }
+]
