@@ -1,4 +1,4 @@
-import signalStates from "./signals.json"
+import signalStates from "./signals.json" assert { type: "json" }
 
 enum State {
   Off,
