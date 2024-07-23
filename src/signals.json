@@ -87,6 +87,6 @@
     {
         "name": "Hl 12b",
         "lamps": [1, 0, 0, 1, 0, 1, 0],
-        "description": "Geschwindigkeit 40 km/h ermäßigen, „Halt“ erwarten."
+        "description": "Geschwindigkeit 60 km/h ermäßigen, „Halt“ erwarten."
     }
 ]
