@@ -16,8 +16,8 @@
     },
     {
         "name": "Hl 2",
-        "lamps": [0, 1, 0, 0, 0, 0, 0],
-        "description": "Fahrt mit Höchstgeschwindigkeit."
+        "lamps": [0, 1, 0, 1, 0, 0, 1],
+        "description": "Fahrt mit 100 km/h, dann mit Höchstgeschwindigkeit."
     },
     {
         "name": "Hl 3a",

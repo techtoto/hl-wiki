@@ -8,9 +8,8 @@ main {
 }
 
 #signal {
-    flex-grow: 1;
-    width: auto;
     height: 100%;
+    width: auto;
 }
 
 @media (min-height: 700px) {
