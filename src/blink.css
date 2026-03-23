@@ -1,25 +1,14 @@
-.green-blink {
-    animation-name: green-blink;
-    animation-duration: 1.5s;
-    animation-timing-function: steps(1);
+.blink {
+    animation-name: blink;
+    animation-duration: 1.05s;
+    animation-timing-function: cubic-bezier(.8,0,.3,1);
     animation-iteration-count: infinite;
+    fill-opacity: 0;
+    animation-delay: -0.5025s;
 }
 
-@keyframes green-blink {
-    50% {
-        fill: green;
-    }
-}
-
-.yellow-blink {
-    animation-name: yellow-blink;
-    animation-duration: 1.5s;
-    animation-timing-function: steps(1);
-    animation-iteration-count: infinite;
-}
-
-@keyframes yellow-blink {
-    50% {
-        fill: yellow;
+@keyframes blink {
+    50% { 
+        fill-opacity: 1;
     }
 }

@@ -5,6 +5,7 @@ main {
     align-items: center;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 #signal {
@@ -21,4 +22,16 @@ main {
 #output {
     font-size: larger;
     height: 1.5em;
+}
+
+.red {
+    fill: red;
+}
+
+.yellow {
+    fill: yellow;
+}
+
+.green {
+    fill: green;
 }

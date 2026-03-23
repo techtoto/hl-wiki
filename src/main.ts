@@ -50,15 +50,13 @@ class CycleBlink extends Cycle {
 
   cycle() {
     if (this.state === State.Blinking) {
-      this.element.classList.remove(this.color + "-blink")
-      this.element.style.fill = "#3f3f3f"
+      this.element.setAttribute("class", "")
       this.state = State.Off
     } else if (this.state === State.Off) {
-      this.element.style.fill = this.color
+      this.element.setAttribute("class", this.color)
       this.state = State.On
     } else {
-      this.element.style.fill = "#3f3f3f"
-      this.element.classList.add(this.color + "-blink")
+      this.element.setAttribute("class", this.color + " blink")
       this.state = State.Blinking
     }
   }
